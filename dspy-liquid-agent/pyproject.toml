@@ -1,0 +1,35 @@
+[project]
+name = "dspy-liquid-invoice-parser"
+version = "0.1.0"
+description = "DSPy-powered Streamlit UI for invoice parsing using Liquid Foundational Models"
+requires-python = ">=3.10"
+dependencies = [
+    "streamlit>=1.28.0",
+    "dspy-ai>=2.4.0",
+    "ollama>=0.2.0",
+    "pillow>=10.0.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "loguru>=0.7.0",
+    "pandas>=2.0.0",
+    "click>=8.0.0",
+    "watchdog>=3.0.0",
+    "datasets>=2.14.0",
+    "huggingface-hub>=0.16.0",
+    "requests>=2.31.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/invoice_parser_ui"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+]
