@@ -1,6 +1,6 @@
 # Small Giants
 
-Exploring GenAI and Analytics use-cases with Small Language Models and Reward Models.
+Exploring GenAI and Analytics use-cases with Small Language Models and Retrieval Models.
 
 ## Overview
 
@@ -12,7 +12,7 @@ Small Giants is a curated collection of practical demonstrations showing how sma
 - **Local-first approach**: Run inference on your hardware with Ollama
 - **Cost-effective**: Reduce API costs and improve privacy
 - **Practical**: Built on proven architectures (DSPy, structured extraction, agent orchestration)
-- **Research-friendly**: Playground for exploring scaling laws, reward models, and few-shot learning
+- **Research-friendly**: Playground for exploring scaling laws, Retrieval models, and few-shot learning
 
 ## Current Use-Cases
 
@@ -39,7 +39,7 @@ Extract utility billing information (amount, currency, type) from invoice images
 Planned use-cases exploring advanced GenAI + Analytics concepts:
 
 - **Financial Analytics Pipeline**: Multi-document reasoning across invoices/receipts/statements with time-series forecasting
-- **Reward Model Framework**: Develop evaluators for extraction accuracy, confidence estimation, and model comparison
+- **Retrieval Model Framework**: Develop evaluators for extraction accuracy, confidence estimation, and model comparison
 - **Entity Linking System**: Connect extracted data to knowledge bases for enriched analysis
 - **Active Learning Loop**: Identify high-uncertainty predictions for human review and model improvement
 - **Benchmark Suite**: Comparative evaluation of small models vs. larger alternatives on document understanding tasks
@@ -91,14 +91,14 @@ User Input → Agent → Stage 1 (Vision) → Stage 2 (Extraction) → Structure
 |-----------|-------|
 | **Framework** | [DSPy](https://github.com/stanfordnlp/dspy) |
 | **Models** | [Liquid AI LFMs](https://www.liquid.ai) |
-| **Inference** | [Ollama](https://ollama.ai), OpenAI, Google Gemini |
+| **Inference** | [Ollama](https://ollama.ai)
 | **UI** | [Streamlit](https://streamlit.io) |
 | **Validation** | [Pydantic](https://docs.pydantic.dev) |
 | **Dev Tools** | Black, isort, mypy, pytest |
 
 ## Contributing
 
-We welcome contributions! Whether you're adding new use-cases, improving reward models, or enhancing existing pipelines:
+We welcome contributions! Whether you're adding new use-cases, improving Retrieval models, or enhancing existing pipelines:
 
 1. Fork the repository
 2. Create a feature branch
