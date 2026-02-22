@@ -1,8 +1,9 @@
 # HANDOFF: File Read/Write Implementation
 
 **Agent**: Next implementer
-**Status**: To be implemented
+**Status**: ✅ Completed
 **Created**: 2026-02-22
+**Completed**: 2026-02-22
 
 ---
 
@@ -14,7 +15,25 @@ Implement file read/write capability in Granite Coder using Ollama's Responses A
 
 - ✅ **Direct mode**: Simple Ollama chat (no file access)
 - ✅ **RLM mode**: Recursive Language Model (no file access - treats prompt as context)
-- ❌ **Responses mode**: Not implemented yet
+- ✅ **Responses mode**: Implemented with file tools
+
+## Implementation Summary
+
+### Files Modified
+- `src/agent.py` - Added responses mode with TOOLS definition and execution methods
+- `src/cli.py` - Added "responses" to mode choices
+- `tests/test_agent.py` - Added comprehensive tests for responses mode
+
+### Tools Implemented
+| Tool | Status | Method |
+|------|--------|--------|
+| `read_file` | ✅ | `_tool_read_file()` |
+| `write_file` | ✅ | `_tool_write_file()` |
+| `list_dir` | ✅ | `_tool_list_dir()` |
+| `search_files` | ✅ | `_tool_search_files()` |
+
+### Security
+- Path sandboxing via `_sanitize_path()` prevents directory traversal attacks
 
 ## Target State
 
@@ -180,30 +199,42 @@ for item in data.get('output', []):
 
 ## Acceptance Criteria
 
-- [ ] Agent can read files via `responses` mode
-- [ ] Agent can write files via `responses` mode  
-- [ ] Agent can list directories via `responses` mode
-- [ ] CLI accepts `--mode responses` flag
-- [ ] Tests pass for read, write, and combined operations
-- [ ] Error handling for invalid paths, permissions, etc.
+- [x] Agent can read files via `responses` mode
+- [x] Agent can write files via `responses` mode  
+- [x] Agent can list directories via `responses` mode
+- [x] CLI accepts `--mode responses` flag
+- [x] Tests pass for read, write, and combined operations
+- [x] Error handling for invalid paths, permissions, etc.
 
 ---
 
 ## Notes
 
 - Responses API is non-stateful - each request is independent
-- For multi-turn tool use, would need to re-prompt with tool results
-- Start with single-turn: task → tool call → result
-- Consider security: restrict to project directory only
+- For multi-turn tool use, would need to re-prompt with tool results (future enhancement)
+- Security: Path sandboxing restricts to base directory only
 
 ---
 
-## Next Steps
+## Usage
 
-1. Implement `_run_responses()` in `src/agent.py`
-2. Add tool execution helper functions
-3. Update CLI with `--mode responses` option
-4. Create test files in `tests/`
-5. Run tests and validate
+```bash
+# Read a file
+granite-coder solve "Read src/agent.py and summarize it" --mode responses
+
+# Write a file
+granite-coder solve "Create a hello.py with a main function" --mode responses
+
+# Interactive mode with file access
+granite-coder chat --mode responses
+```
+
+---
+
+## Future Enhancements
+
+- Multi-turn tool execution loop
+- Streaming responses with tool calls
+- Additional tools (grep, git operations)
 
 **Reference**: See `RESPONSES.md` for full API details.

@@ -49,6 +49,11 @@ test:
 	@echo "Running quick test..."
 	uv run granite-coder solve "What is 2+2?"
 
+.PHONY: pytest
+pytest:
+	@echo "Running pytest..."
+	uv run pytest tests/ -v
+
 # ============================================================================
 # Installation
 # ============================================================================

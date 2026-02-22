@@ -14,7 +14,10 @@ def cli():
 @click.option("--model", default="ibm/granite4", help="Model to use")
 @click.option("--max-iterations", default=3, help="Max RLM iterations (RLM mode only)")
 @click.option(
-    "--mode", type=click.Choice(["direct", "rlm"]), default="direct", help="Agent mode"
+    "--mode",
+    type=click.Choice(["direct", "rlm", "responses"]),
+    default="direct",
+    help="Agent mode",
 )
 def chat(model, max_iterations, mode):
     """Interactive chat mode"""
@@ -51,7 +54,10 @@ def chat(model, max_iterations, mode):
 @click.option("--path", default=".", help="Codebase path")
 @click.option("--max-iterations", default=3, help="Max RLM iterations (RLM mode only)")
 @click.option(
-    "--mode", type=click.Choice(["direct", "rlm"]), default="direct", help="Agent mode"
+    "--mode",
+    type=click.Choice(["direct", "rlm", "responses"]),
+    default="direct",
+    help="Agent mode",
 )
 def solve(task, model, path, max_iterations, mode):
     """Solve a single task"""
@@ -86,7 +92,7 @@ def status():
                 click.echo("Granite: NOT FOUND")
         else:
             click.echo("Ollama: ERROR")
-    except:
+    except Exception:
         click.echo("Ollama: NOT RUNNING")
 
 
