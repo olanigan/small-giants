@@ -1,14 +1,16 @@
-# Python
+# ============================================================================
+# SMALL GIANTS EXPERIMENT - Shared Ignore Rules
+# ============================================================================
+
+# Python (shared)
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
+*.egg-info/
 .eggs/
 lib/
 lib64/
@@ -16,18 +18,16 @@ parts/
 sdist/
 var/
 wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Virtual environments
+# Virtual environments (per-project)
 .venv/
 venv/
 ENV/
 env/
 
-# IDE/Editor
+# IDE/Editor (shared)
 .vscode/
 .idea/
 *.swp
@@ -58,11 +58,7 @@ htmlcov/
 .coverage.*
 coverage.xml
 *.cover
-
-# Testing
 .pytest_cache/
-.tox/
-.hypothesis/
 
 # Type checking
 .mypy_cache/
@@ -70,27 +66,26 @@ coverage.xml
 dmypy.json
 .pyre/
 
-# IDEs temp files
-*.swp
-*.swo
-.vscode/
-.idea/
-
 # OS
-.DS_Store
 Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
-*.ipynb
 
 # ruff
 .ruff_cache/
 
-# uv
+# uv (shared)
 uv.lock
 
-# Project specific
-.sprint/
-.dev
-research/
+# ============================================================================
+# PROJECT-SPECIFIC IGNORES
+# ============================================================================
+
+# dspy-liquid-agent
+dspy-liquid-agent/.sprint/
+dspy-liquid-agent/.dev
+dspy-liquid-agent/research/
+
+# granite-coder
+granite-coder/.venv/

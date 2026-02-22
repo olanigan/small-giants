@@ -1,0 +1,10 @@
+{
+  "name": "granite-coder",
+  "version": "0.1.0",
+  "type": "stdio",
+  "entrypoint": "src.server:main",
+  "description": "Autonomous coding agent powered by IBM Granite 4",
+  "env": {
+    "OLLAMA_HOST": "http://localhost:11434"
+  }
+}

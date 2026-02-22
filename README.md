@@ -14,9 +14,11 @@ Small Giants is a curated collection of practical demonstrations showing how sma
 - **Practical**: Built on proven architectures (DSPy, structured extraction, agent orchestration)
 - **Research-friendly**: Playground for exploring scaling laws, Retrieval models, and few-shot learning
 
-## Current Use-Cases
+---
 
-### 📄 [Invoice Parser](./dspy-liquid-agent)
+## Projects
+
+### 📄 [Invoice Parser](./dspy-liquid-agent) — Document Extraction
 
 **Multimodal document processing with structured extraction**
 
@@ -24,15 +26,48 @@ Extract utility billing information (amount, currency, type) from invoice images
 - **Stage 1**: Vision-language model (Liquid AI LFM2-VL-3B) extracts text from images
 - **Stage 2**: Compact extraction model (LFM2-1.2B-Extract) parses structured data
 
-**Features:**
-- Web UI with Streamlit
-- Batch processing
-- Multiple model providers (Ollama, Gemini, OpenAI)
-- CSV/JSON export
+| Attribute | Value |
+|-----------|-------|
+| Type | Document Extraction |
+| Architecture | DSPy Multi-stage |
+| Models | LFM2-VL-3B, LFM2-1.2B-Extract |
+| UI | Streamlit |
 
-**Stack:** DSPy, Liquid AI, Ollama, Streamlit, Pydantic
+[→ Documentation](./dspy-liquid-agent/README.md)
 
-[→ See detailed documentation](./dspy-liquid-agent/README.md)
+---
+
+### 🤖 [Granite Coder](./granite-coder) — Coding Agent
+
+**Token-efficient coding agent using IBM Granite 4**
+
+A lightweight coding assistant leveraging the "Greedy" architecture (Recursive Language Models) for token-efficient code assistance. Runs locally via Ollama with MCP server support for IDE integration.
+
+| Attribute | Value |
+|-----------|-------|
+| Type | Coding Agent |
+| Architecture | RLM (Recursive Language Model) |
+| Models | IBM Granite 4 |
+| Interface | CLI + MCP Server |
+
+**Usage:**
+```bash
+cd granite-coder
+uv sync
+
+# CLI mode
+granite-coder solve "Write a hello world function"
+
+# Interactive chat
+granite-coder chat
+
+# MCP server mode
+granite-coder mcp
+```
+
+[→ Documentation](./granite-coder/README.md)
+
+---
 
 ## Roadmap
 
@@ -47,9 +82,10 @@ Planned use-cases exploring advanced GenAI + Analytics concepts:
 ## Quick Start
 
 ### Prerequisites
-- Python 3.10+
+- Python 3.11+
 - [Ollama](https://ollama.ai) (for local inference)
 - Git
+- [uv](https://github.com/astral-sh/uv) (package manager)
 
 ### Installation
 
@@ -58,20 +94,25 @@ Planned use-cases exploring advanced GenAI + Analytics concepts:
 git clone https://github.com/olanigan/small-giants.git
 cd small-giants
 
-# Install dependencies (using uv for speed)
-pip install uv
-uv pip install -e ./dspy-liquid-agent
+# Install project dependencies
+cd dspy-liquid-agent && uv pip install -e . && cd ..
+cd granite-coder && uv sync && cd ..
 ```
 
-### Run Invoice Parser Demo
+### Run Demos
 
+**Invoice Parser:**
 ```bash
 cd dspy-liquid-agent
 make download-samples  # Optional: create sample invoices
 make run              # Launch Streamlit app at http://localhost:8501
 ```
 
-For detailed setup instructions, see [dspy-liquid-agent/README.md](./dspy-liquid-agent/README.md)
+**Granite Coder:**
+```bash
+cd granite-coder
+granite-coder solve "What is 2+2?"
+```
 
 ## Architecture
 
