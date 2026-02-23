@@ -69,6 +69,31 @@ granite-coder mcp
 
 ---
 
+### 🔍 [LangChain RAG](./langchain-qdrant-ollama-rag) — Retrieval-Augmented Generation
+
+**Local RAG pipeline with Qdrant vector search and RAGAS evaluation**
+
+A complete RAG benchmark demonstrating semantic retrieval with local models. Uses Qdrant for vector storage, Ollama for embeddings and generation, and RAGAS for automated evaluation of RAG metrics.
+
+| Attribute | Value |
+|-----------|-------|
+| Type | RAG Pipeline |
+| Architecture | LangChain + Qdrant + RAGAS |
+| Models | nomic-embed-text, gpt-oss:20b-cloud |
+| Evaluation | RAGAS (faithfulness, relevancy, recall, precision) |
+
+**Usage:**
+```bash
+cd langchain-qdrant-ollama-rag
+make setup        # Install deps, pull models
+make run-baseline # Run RAG pipeline
+make run-ragas-eval # Run evaluation
+```
+
+[→ Documentation](./langchain-qdrant-ollama-rag/README.md)
+
+---
+
 ## Roadmap
 
 Planned use-cases exploring advanced GenAI + Analytics concepts:
@@ -97,6 +122,7 @@ cd small-giants
 # Install project dependencies
 cd dspy-liquid-agent && uv pip install -e . && cd ..
 cd granite-coder && uv sync && cd ..
+cd langchain-qdrant-ollama-rag && poetry install && cd ..
 ```
 
 ### Run Demos
@@ -114,6 +140,14 @@ cd granite-coder
 granite-coder solve "What is 2+2?"
 ```
 
+**LangChain RAG:**
+```bash
+cd langchain-qdrant-ollama-rag
+# Prerequisites: Qdrant running (docker run -p 6333:6333 qdrant/qdrant)
+make setup           # Install deps, pull Ollama models
+make run-ragas-eval  # Run RAG pipeline with evaluation
+```
+
 ## Architecture
 
 **Agent-based orchestration** using DSPy's modular framework:
@@ -126,15 +160,26 @@ granite-coder solve "What is 2+2?"
 User Input → Agent → Stage 1 (Vision) → Stage 2 (Extraction) → Structured Output
 ```
 
+**RAG Pipeline** using LangChain components:
+- Semantic search with Qdrant vector database
+- Local inference with Ollama embeddings and generation
+- Automated evaluation with RAGAS metrics
+
+```
+User Query → Embedding → Qdrant Search → Context → LLM → Answer → RAGAS Eval
+```
+
 ## Tech Stack
 
 | Component | Tools |
 |-----------|-------|
-| **Framework** | [DSPy](https://github.com/stanfordnlp/dspy) |
-| **Models** | [Liquid AI LFMs](https://www.liquid.ai) |
-| **Inference** | [Ollama](https://ollama.ai)
+| **Framework** | [DSPy](https://github.com/stanfordnlp/dspy), [LangChain](https://python.langchain.com) |
+| **Vector DB** | [Qdrant](https://qdrant.tech) |
+| **Models** | [Liquid AI LFMs](https://www.liquid.ai), [IBM Granite](https://www.ibm.com/granite) |
+| **Inference** | [Ollama](https://ollama.ai) |
 | **UI** | [Streamlit](https://streamlit.io) |
 | **Validation** | [Pydantic](https://docs.pydantic.dev) |
+| **Evaluation** | [RAGAS](https://docs.ragas.io) |
 | **Dev Tools** | Black, isort, mypy, pytest |
 
 ## Contributing
@@ -168,6 +213,9 @@ If you use Small Giants in your research, please cite:
 ## Resources
 
 - [DSPy Documentation](https://github.com/stanfordnlp/dspy)
+- [LangChain Documentation](https://python.langchain.com)
+- [Qdrant Documentation](https://qdrant.tech/documentation)
+- [RAGAS Evaluation](https://docs.ragas.io)
 - [Liquid AI Models](https://www.liquid.ai/research)
 - [Ollama Getting Started](https://ollama.ai/library)
 - [LLM Efficiency Benchmarks](https://huggingface.co/spaces/open-llm-leaderboard/)
